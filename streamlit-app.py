@@ -11,21 +11,48 @@ data = data.fillna("None")
 
 st.title("Squirrels! 🐿")
 st.markdown(
-    "This app showcases a couple functionalities of Streamlit. One very useful widget incorporated in Streamlit "
+    """As part of the Squirrel Census Program in 2018, volunteers counted all squirrels in Central Park and
+     recorded features like their color, where they were sighted and whether they were doing anything 
+     interesting at that time. Strangely, this was the first time anyone had ever attempted anything like this. 
+     The results? Central Park is the home of 3023 squirrels, most of which are gray! A few of them must be 
+     especially fast, since the Census volunteers weren't even able to see what color they were :)"""
 )
 custom_params = {"axes.spines.right": False, "axes.spines.top": False}
 sns.set_theme(style="ticks", rc=custom_params)
 sns.color_palette("Set2")
 fig, ax = plt.subplots(figsize=(10, 5))
 
-st.markdown("You can also implement nice 'metric' widgets like these: ")
-col1, col2, col3 = st.columns(3)
-col1.metric("Number of squirrels", len(data), len(data) - 2800)
-col2.metric("Wind", "9 mph", "-8%")
-col3.metric("Humidity", "86%", "4%")
 
-ax = sns.countplot(data["Primary Fur Color"].dropna())
+ax = sns.countplot(data["Primary Fur Color"])
 st.pyplot(fig)
+
+
+st.markdown(
+    f"""The Squirrel Census website mentions a number of 2373 squirrels in Central Park, but our 
+most recent data suggests a much larger number of {len(data)}. Does this mean that Central Park squirrels 
+are doing well? """
+)
+col1, col2, col3 = st.columns(3)
+col1.metric("Number of recorded squirrels", len(data), len(data) - 2373)
+col2.metric(
+    "Squirrels per hectare",
+    round(len(data) / 350, 2),
+    round((len(data) - 2373) / 350, 2),
+)
+col3.metric("Number of primary colors", 3)
+
+st.markdown(
+    """Apart from _counting the number of squirrels_, 
+the volunteers also recorded their location and gave them all a unique name. 
+What's your favorite squirrel name? Mine is definitely **18C-PM-1018-02**, so cute 🥰.
+
+Check out the full data below: hover over each point to reveal the squirrels name and what
+he (or she) was doing when they were spotted. You can also use the selection window to focus on specific
+fur colors. 
+
+Can you find the two squirrels that were chasing
+each other through the trees? I wonder what those little rodents were in such a big fight about.  """
+)
 
 # Function that constructs a PyDeck scatter layer to display squirrels
 def squirrel_layer(data, color):
