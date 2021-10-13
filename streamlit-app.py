@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import seaborn as sns
+import matplotlib.pyplot as plt
 import pydeck as pdk
 import numpy as np
 
@@ -9,11 +10,22 @@ data = data.rename(columns={"X": "lon", "Y": "lat"})
 data = data.fillna("None")
 
 st.title("Squirrels! 🐿")
-st.markdown("This app showcases a couple functionalities of Streamlit")
+st.markdown(
+    "This app showcases a couple functionalities of Streamlit. One very useful widget incorporated in Streamlit "
+)
+custom_params = {"axes.spines.right": False, "axes.spines.top": False}
+sns.set_theme(style="ticks", rc=custom_params)
+sns.color_palette("Set2")
+fig, ax = plt.subplots(figsize=(10, 5))
 
-# st.write(data)
+st.markdown("You can also implement nice 'metric' widgets like these: ")
+col1, col2, col3 = st.columns(3)
+col1.metric("Number of squirrels", len(data), len(data) - 2800)
+col2.metric("Wind", "9 mph", "-8%")
+col3.metric("Humidity", "86%", "4%")
 
-# st.text("Hello world :)")
+ax = sns.countplot(data["Primary Fur Color"].dropna())
+st.pyplot(fig)
 
 # Function that constructs a PyDeck scatter layer to display squirrels
 def squirrel_layer(data, color):
