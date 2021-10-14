@@ -5,18 +5,20 @@ import matplotlib.pyplot as plt
 import pydeck as pdk
 import numpy as np
 
+st.set_page_config(page_title="Squirrel Census", page_icon="🐿")
+
 data = pd.read_csv("data/2018_Central_Park_Squirrel_Census.csv")
 data = data.rename(columns={"X": "lon", "Y": "lat"})
 data = data.fillna("None")
 
-st.title("Squirrels! 🐿")
+st.title("The Central Park Squirrel Census🐿")
 st.image("data/central_park.jpg")
 st.markdown(
     """As part of the [Squirrel Census](https://www.thesquirrelcensus.com/) in 2018, volunteers counted all squirrels in Central Park and
      recorded features like their color, where they were sighted and whether they were doing anything 
      interesting at that time. Strangely, this was the first time anyone had ever attempted anything like this. 
-     The results? Central Park is the home of 3023 squirrels, most of which are gray! A few of them must be 
-     especially fast, since the Census volunteers weren't even able to see what color they were 🐿💨"""
+     The results? Central Park is the home of **3023 squirrels**, most of which are gray! A few of them must be 
+     especially fast, since the Census volunteers weren't even able to see what color they had 🐿💨"""
 )
 custom_params = {"axes.spines.right": False, "axes.spines.top": False}
 sns.set_theme(style="ticks", rc=custom_params)
