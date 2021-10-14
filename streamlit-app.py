@@ -55,15 +55,15 @@ col3.metric("Number of primary colors", 3)
 
 st.markdown(
     """Apart from counting the number of squirrels, 
-the volunteers also recorded their location and gave them all a unique name. 
-What's your favorite squirrel name? Mine is definitely **18C-PM-1018-02**, so cute 🥰.
- 
-Check out the full data below: hover over each point to reveal the squirrels name and what
-he (or she) was doing when they were spotted. You can also use the selection box to focus on specific
-fur colors. 
+    the volunteers also recorded their location and gave them all a unique name. 
+    What's your favorite squirrel name? Mine is definitely **18C-PM-1018-02**, so cute 🥰.
+    
+    Check out the full data below: hover over each point to reveal the squirrels name and what
+    he (or she) was doing when they were spotted. You can also use the selection box to focus on specific
+    fur colors. 
 
-Can you find the two squirrels that were chasing
-each other through the trees? I wonder what those little rodents were in such a big fight about.  """
+    Can you find the two squirrels that were chasing
+    each other through the trees? I wonder what those little rodents were in such a big fight about.  """
 )
 
 # Function that constructs a PyDeck scatter layer to display squirrels
@@ -84,7 +84,7 @@ def squirrel_layer(data, color):
     )
 
 
-# Define three different layers for the three different colors
+# Define a dict with three different layers for the three different colors
 map_layers = {
     "Gray": squirrel_layer(
         data.loc[data["Primary Fur Color"] == "Gray"], [130, 130, 130]
@@ -120,11 +120,3 @@ map = pdk.Deck(
 
 # Render the map as html instead of using st.deck() to circumvent a few Pydeck rendering issues
 st.components.v1.html(map.to_html(as_string=True), height=500)
-
-st.markdown(
-    """If you haven't seen enough squirrels yet, have a look at the 
-    [data](https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw)
-yourself or check out Mark Rober's video below to learn more about these surprisingly cool critters!"""
-)
-
-st.video("https://www.youtube.com/watch?v=hFZFjoX2cGg")
