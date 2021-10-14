@@ -57,11 +57,9 @@ st.markdown(
     """Apart from counting the number of squirrels, 
     the volunteers also recorded their location and gave them all a unique name. 
     What's your favorite squirrel name? Mine is definitely **18C-PM-1018-02**, so cute 🥰.
-    
     Check out the full data below: hover over each point to reveal the squirrels name and what
     he (or she) was doing when they were spotted. You can also use the selection box to focus on specific
     fur colors. 
-
     Can you find the two squirrels that were chasing
     each other through the trees? I wonder what those little rodents were in such a big fight about.  """
 )
