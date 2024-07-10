@@ -9,7 +9,7 @@ import numpy as np
 st.set_page_config(page_title="Squirrel Census", page_icon="🐿")
 
 
-@st.cache  # This decorator caches the result of this function, so it's not reloaded on each change.
+@st.cache_data  # This decorator caches the result of this function, so it's not reloaded on each change.
 def load_data(file):
     df = pd.read_csv(file)
     df = df.fillna("None")
