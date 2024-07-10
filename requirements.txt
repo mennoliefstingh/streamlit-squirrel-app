@@ -1,6 +1,6 @@
 matplotlib
 numpy<2.0.0
-pandas==2.2.2
+pandas
 pydeck==0.8.0
 seaborn==0.13.2
 streamlit==1.25.0
