@@ -1,5 +1,5 @@
-python>3.11
-matplotlib==3.7.2
+python==3.8.19
+matplotlib
 numpy<2.0.0
 pandas==2.2.2
 pydeck==0.8.0
